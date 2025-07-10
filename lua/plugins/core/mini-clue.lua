@@ -7,12 +7,14 @@ return {
                 { mode = "n", keys = "g" },
                 { mode = "n", keys = "[" },
                 { mode = "n", keys = "]" },
+                { mode = "n", keys = "<C-w>" },
             },
             clues = {
-                { mode = "n", keys = "<Space>", file = "Find files", grep = "Live grep", buffers = "Find buffers", help = "Help tags", command = "Command", write = "Write", quit = "Quit", force_quit = "Force quit", open = "Open files", diagnostics = "Line diagnostics" },
-                { mode = "n", keys = "g", definition = "Goto definition", type_definition = "Goto type definition", implementation = "Goto implementation", references = "Goto references" },
-                { mode = "n", keys = "[", diagnostics = "Previous diagnostic" },
-                { mode = "n", keys = "]", diagnostics = "Next diagnostic" },
+                { mode = "n", keys = "<Space>", f = "Find files", g = "Live grep", b = "Buffers", h = "Help tags", k = "Hover", s = "Document Symbols", S = "Workspace Symbols", d = "Diagnostics", a = "Code Action", w = "Write", q = "Quit", x = "Force Quit", o = "Open Files" },
+                { mode = "n", keys = "g", g = "Goto top", e = "Goto end", h = "Goto line start", l = "Goto line end", d = "Definition", y = "Type Definition", r = "References", i = "Implementation" },
+                { mode = "n", keys = "[", d = "Previous diagnostic" },
+                { mode = "n", keys = "]", d = "Next diagnostic" },
+                { mode = "n", keys = "<C-w>", v = "V-Split", s = "H-Split", h = "Left", j = "Down", k = "Up", l = "Right", q = "Close", o = "Close Others" },
             },
         })
     end,
