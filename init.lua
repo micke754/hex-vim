@@ -18,7 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Load plugins using lazy.nvim
 require("lazy").setup("plugins.core")
--- require("plugins")
 
 -- Load core configurations
 require("core.options")
