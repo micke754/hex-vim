@@ -1,111 +1,86 @@
--- lua/core/keymaps.lua
+-- Core keymaps that are not plugin-specific
 
-local keymap = vim.keymap
-local api = vim.api
+-- Normal movements
+--e
 
--- Utility function to check if a keymap exists
-local function keymap_exists(mode, lhs)
-	return #api.nvim_get_keymap(mode) > 0 and api.nvim_get_keymap(mode)[lhs] ~= nil
+local function create_helix_motion(motion)
+	return function()
+		if vim.fn.mode() == "v" or vim.fn.mode() == "V" then
+			return "<Esc>v" .. motion
+		else
+			return ":noh<CR>v" .. motion
+		end
+	end
 end
 
--- ####################################################################
--- ## Normal Mode
--- ####################################################################
+local function helix_e()
+	if vim.fn.mode() == "v" or vim.fn.mode() == "V" then
+		return "<Esc>ve"
+	else
+		return ":noh<CR>ve"
+	end
+end
 
--- Most motions are prefixed with 'v' to enter visual mode and select.
--- This is the core of the "select-then-act" model.
+vim.keymap.set({ "n", "v" }, "e", helix_e, { expr = true, noremap = true, desc = "helix e normal" })
 
--- Movement and Selection
-keymap.set("n", "h", "vh", { noremap = true, desc = "Select left" })
-keymap.set("n", "j", "vj", { noremap = true, desc = "Select down" })
-keymap.set("n", "k", "vk", { noremap = true, desc = "Select up" })
-keymap.set("n", "l", "vl", { noremap = true, desc = "Select right" })
-keymap.set("n", "w", "viw", { noremap = true, desc = "Select word" })
-keymap.set("n", "b", "vib", { noremap = true, desc = "Select word backward" })
-keymap.set("n", "e", "vie", { noremap = true, desc = "Select to word end" })
-keymap.set("n", "W", "viW", { noremap = true, desc = "Select WORD" })
-keymap.set("n", "B", "viB", { noremap = true, desc = "Select WORD backward" })
-keymap.set("n", "E", "viE", { noremap = true, desc = "Select to WORD end" })
-keymap.set("n", "x", "v", { noremap = true, desc = "Select line" })
-keymap.set("n", "X", "V", { noremap = true, desc = "Select lines" })
-keymap.set("n", "%", "v%", { noremap = true, desc = "Select matching bracket" })
+-- Word motions (Helix-style select-action)
+local helix_w = create_helix_motion("w")
+local helix_b = create_helix_motion("b")
+local helix_W = create_helix_motion("W")
+local helix_B = create_helix_motion("B")
+local helix_E = create_helix_motion("E")
 
--- Changes (these will operate on selections made in visual mode)
-keymap.set("v", "d", "d", { noremap = true, desc = "Delete selection" })
-keymap.set("v", "c", "c", { noremap = true, desc = "Change selection" })
-keymap.set("v", "y", "y", { noremap = true, desc = "Yank selection" })
-keymap.set("v", "p", "p", { noremap = true, desc = "Paste after selection" })
-keymap.set("v", "P", "P", { noremap = true, desc = "Paste before selection" })
-keymap.set("v", ">", ">gv", { noremap = true, desc = "Indent selection" })
-keymap.set("v", "<", "<gv", { noremap = true, desc = "Unindent selection" })
+vim.keymap.set({ "n", "v" }, "w", helix_w, { expr = true, noremap = true, desc = "helix w" })
+vim.keymap.set({ "n", "v" }, "b", helix_b, { expr = true, noremap = true, desc = "helix b" })
+vim.keymap.set({ "n", "v" }, "W", helix_W, { expr = true, noremap = true, desc = "helix W" })
+vim.keymap.set({ "n", "v" }, "B", helix_B, { expr = true, noremap = true, desc = "helix B" })
+vim.keymap.set({ "n", "v" }, "E", helix_E, { expr = true, noremap = true, desc = "helix E" })
 
--- Insert Mode
-keymap.set("n", "i", "i", { noremap = true, desc = "Insert before selection" })
-keymap.set("n", "a", "a", { noremap = true, desc = "Append after selection" })
-keymap.set("n", "I", "I", { noremap = true, desc = "Insert at start of line" })
-keymap.set("n", "A", "A", { noremap = true, desc = "Append at end of line" })
-keymap.set("n", "o", "o", { noremap = true, desc = "Open new line below" })
-keymap.set("n", "O", "O", { noremap = true, desc = "Open new line above" })
+-- Visual selections
+vim.keymap.set("n", "mip", "vip", { noremap = true, desc = "Select in paragraph (Helix-style)" })
+vim.keymap.set("n", "miw", "viw", { noremap = true, desc = "Select in word (Helix-style)" })
 
--- ####################################################################
--- ## Goto Mode (g)
--- ####################################################################
--- These are non-selecting motions.
-keymap.set("n", "gg", "gg", { noremap = true, desc = "Goto top of file" })
-keymap.set("n", "ge", "G", { noremap = true, desc = "Goto end of file" })
-keymap.set("n", "gs", "0", { noremap = true, desc = "Goto start of line" })
-keymap.set("n", "gl", "$", { noremap = true, desc = "Goto end of line" })
-keymap.set("n", "gd", "gd", { noremap = true, desc = "Goto definition" })
-keymap.set("n", "gy", "gy", { noremap = true, desc = "Goto type definition" })
-keymap.set("n", "gr", "gr", { noremap = true, desc = "Goto references" })
-keymap.set("n", "gi", "gi", { noremap = true, desc = "Goto implementation" })
+-- Buffer management
+-- vim.keymap.set(
+--     "n",
+--     "<Space>wq",
+--     ":lua require('mini.bufremove').delete(0, false)<CR>",
+--     { noremap = true, desc = "Quit buffer" }
+-- )
 
--- ####################################################################
--- ## Space Mode
--- ####################################################################
-keymap.set("n", "<Space>f", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
-keymap.set("n", "<Space>g", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
-keymap.set("n", "<Space>b", "<cmd>Telescope buffers<cr>", { desc = "Find buffers" })
-keymap.set("n", "<Space>h", "<cmd>Telescope help_tags<cr>", { desc = "Help tags" })
-keymap.set("n", "<Space>k", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Hover documentation" })
-keymap.set("n", "<Space>s", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Document symbols" })
-keymap.set("n", "<Space>S", "<cmd>Telescope lsp_workspace_symbols<cr>", { desc = "Workspace symbols" })
-keymap.set("n", "<Space>d", "<cmd>Telescope diagnostics<cr>", { desc = "Diagnostics" })
-keymap.set("n", "<Space>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code action" })
-keymap.set("n", "<Space>w", "<cmd>w<cr>", { desc = "Write" })
-keymap.set("n", "<Space>q", "<cmd>q<cr>", { desc = "Quit" })
-keymap.set("n", "<Space>x", "<cmd>q!<cr>", { desc = "Force quit" })
-keymap.set("n", "<Space>o", "<cmd>MiniFiles<cr>", { desc = "Open files" })
+-- Movement improvements
+vim.keymap.set({ "n", "v" }, "<C-d>", "<Esc><C-d>zz", { noremap = true, desc = "Scroll down and center" })
+vim.keymap.set({ "n", "v" }, "<C-u>", "<Esc><C-u>zz", { noremap = true, desc = "Scroll up and center" })
 
--- ####################################################################
--- ## Window Mode (Ctrl-w)
--- ####################################################################
-keymap.set("n", "<C-w>v", "<C-w>v", { noremap = true, desc = "Vertical split" })
-keymap.set("n", "<C-w>s", "<C-w>s", { noremap = true, desc = "Horizontal split" })
-keymap.set("n", "<C-w>h", "<C-w>h", { noremap = true, desc = "Move to left split" })
-keymap.set("n", "<C-w>j", "<C-w>j", { noremap = true, desc = "Move to below split" })
-keymap.set("n", "<C-w>k", "<C-w>k", { noremap = true, desc = "Move to above split" })
-keymap.set("n", "<C-w>l", "<C-w>l", { noremap = true, desc = "Move to right split" })
-keymap.set("n", "<C-w>q", "<C-w>q", { noremap = true, desc = "Close split" })
-keymap.set("n", "<C-w>o", "<C-w>o", { noremap = true, desc = "Close other splits" })
+vim.keymap.set("n", "ge", "G", { noremap = true, desc = "Scroll to end" })
+vim.keymap.set("n", "gs", "0", { noremap = true, desc = "Scroll to start" })
+vim.keymap.set("n", "gl", "$", { noremap = true, desc = "Scroll to end of line" })
 
--- ####################################################################
--- ## Other
--- ####################################################################
--- Enter command mode
-keymap.set("n", ":", ":", { noremap = true })
+-- Searching
+vim.keymap.set("n", ";", ":noh<CR>", { noremap = true, desc = "Clear search highlighting" })
+vim.keymap.set("v", ";", ":noh<CR>", { noremap = true, desc = "Clear search highlighting" })
 
--- Exit visual mode
-keymap.set("v", "v", "<Esc>", { noremap = true, desc = "Exit visual mode" })
+vim.keymap.set("n", "s", "", { noremap = true, desc = "unmap s" })
 
--- Collapse selection
-keymap.set("n", ";", "<Esc>", { noremap = true, desc = "Collapse selection" })
+-- Preference
+vim.keymap.set({ "n", "v" }, "<Space>qq", "<Esc>:qa<CR>", { noremap = true, desc = "Quit all buffers" })
+vim.keymap.set({ "n", "v" }, "<Space>ww", "<Esc>:w<CR>", { noremap = true, desc = "Save buffer" })
 
--- Collapse selection
-keymap.set("v", ";", "<Esc>", { noremap = true, desc = "Collapse selection" })
+local map_multistep = require("mini.keymap").map_multistep
+-- Create a test mapping
+-- map_multistep("n", "e", { "Esc", "v", "e" })
+map_multistep("i", "<Tab>", { "pmenu_next" })
+map_multistep("i", "<Tab>", { "pmenu_next" })
+map_multistep("i", "<S-Tab>", { "pmenu_prev" })
+map_multistep("i", "<CR>", { "pmenu_accept", "minipairs_cr" })
+map_multistep("i", "<BS>", { "minipairs_bs" })
 
--- Insert mode
-keymap.set("i", "jj", "<Esc>", { desc = "Escape insert mode" })
+local map_combo = require("mini.keymap").map_combo
 
--- Clear search highlighting
-keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlighting" })
+-- Support most common modes. This can also contain 't', but would
+-- only mean to press `<Esc>` inside terminal.
+local mode = { "i", "c", "x", "s" }
+map_combo(mode, "jj", "<BS><BS><Esc>")
+
+local mode = { "n", "v" }
+map_combo(mode, "mm", "%")

@@ -4,8 +4,26 @@ return {
 	"echasnovski/mini.nvim",
 	version = false,
 	config = function()
-		require("mini.basics").setup({}) -- Basic settings
-		require("mini.move").setup({}) -- Move text/blocks
+		require("mini.basics").setup({
+			-- Enhance default Neovim behavior
+			options = {
+				basic = true,
+				extra_ui = true,
+			},
+			mappings = {
+				-- Disable some default mappings to use custom ones
+				basic = true,
+				windows = true,
+				move_with_alt = true,
+			},
+		}) -- Basic settings
+
+		require("mini.keymap").setup(
+			{
+				
+			}
+		)
+		-- require("mini.move").setup({}) -- Move text/blocks
 		-- require("mini.ai").setup({}) -- Enhanced text objects
 		-- require("mini.surround").setup({}) -- Surround management
 		-- require("mini.comment").setup({}) -- Commenting
@@ -15,6 +33,8 @@ return {
 				{ mode = "x", keys = "<Leader>" },
 				{ mode = "n", keys = "m" },
 				{ mode = "x", keys = "m" },
+				{ mode = "n", keys = "g" },
+				{ mode = "x", keys = "g" },
 			},
 		}) -- Keymap hints
 		-- require("mini.files").setup({}) -- File tree
