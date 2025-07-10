@@ -98,5 +98,14 @@ keymap.set("n", ":", ":", { noremap = true })
 -- Exit visual mode
 keymap.set("v", "v", "<Esc>", { noremap = true, desc = "Exit visual mode" })
 
+-- Collapse selection
+keymap.set("n", ";", "<Esc>", { noremap = true, desc = "Collapse selection" })
+
+-- Collapse selection
+keymap.set("v", ";", "<Esc>", { noremap = true, desc = "Collapse selection" })
+
 -- Insert mode
 keymap.set("i", "jj", "<Esc>", { desc = "Escape insert mode" })
+
+-- Clear search highlighting
+keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlighting" })
