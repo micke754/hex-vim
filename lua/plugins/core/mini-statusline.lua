@@ -1,4 +1,4 @@
-local enabled = true
+local enabled = false
 local plugin = {
 	"echasnovski/mini.statusline",
 	config = function()

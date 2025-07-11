@@ -1,6 +1,6 @@
--- plugins/completions.lua
+local enabled = true
 
-return {
+local plugin = {
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
@@ -28,3 +28,9 @@ return {
 		end,
 	},
 }
+
+if enabled == false then
+	return {}
+else
+	return plugin
+end
