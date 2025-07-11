@@ -1,5 +1,5 @@
 local enabled = false
-plugin = {
+local plugin = {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -15,6 +15,7 @@ plugin = {
 		end,
 	},
 }
+
 if enabled == false then
 	return {}
 else
