@@ -52,6 +52,34 @@ I have implemented a comprehensive Helix-inspired keymap configuration using Neo
 - Leverages existing Neovim and `mini.nvim` functionality
 - Provides a Helix-like editing experience
 
+### Future Improvements
+
+#### Text Object Enhancements
+- Implement comprehensive `mi`/`ma` text object selections
+  - `mi(`, `mi)`: Inside parentheses
+  - `mi{`, `mi}`: Inside braces
+  - `mi"`, `mi'`, `` mi` ``: Inside quotes
+  - `ma(`, `ma)`: Around parentheses
+  - `ma{`, `ma}`: Around braces
+  - `ma"`, `ma'`, `` ma` ``: Around quotes
+
+#### Line Operations
+- Implement line-specific selection and manipulation
+  - `x`: Select entire line
+  - `X`: Extend selection to line end
+  - `<A-x>`: Shrink to line boundaries
+
+#### Space Mode Enhancements
+- Implement additional Space mode keymaps
+  - `<Space>/`: Global search
+  - `<Space>k`: Show hover info
+  - `<Space>a`: Code actions
+
+#### Existing Space Mode Keymaps
+- `<Space>f`: Find files (Telescope)
+- `<Space>b`: Find buffers (Telescope)
+- `<Space>s`: Document symbols (Telescope)
+
 ### 3. UI and Functionality with `mini.nvim`
 
 I will remove the previously added plugins (`lualine`, `bufferline`) and use the `mini.nvim` suite as intended.

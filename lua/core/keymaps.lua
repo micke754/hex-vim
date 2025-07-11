@@ -52,7 +52,7 @@ vim.keymap.set({ "n", "v" }, "B", smart_B, { expr = true, noremap = true, desc =
 vim.keymap.set({ "n", "v" }, "E", smart_E, { expr = true, noremap = true, desc = "smart E motion" })
 
 -- Escape
-vim.keymap.set("i", "jj", "%", { noremap = true, desc = "Select inside word" })
+vim.keymap.set("i", "jj", "<Esc>", { noremap = true, desc = "Select inside word" })
 
 -- Existing text object selections
 vim.keymap.set("n", "mip", "vip", { noremap = true, desc = "Select inside paragraph" })
@@ -111,18 +111,10 @@ vim.keymap.set("v", ";", ":noh<CR>", { noremap = true, desc = "Clear search high
 
 vim.keymap.set("n", "s", "", { noremap = true, desc = "unmap s" })
 
--- Space Mode (Enhanced Pickers and Actions)
+-- Space Mode (Pickers)
 vim.keymap.set("n", "<Space>f", "<cmd>Telescope find_files<cr>", { noremap = true, desc = "Find files" })
 vim.keymap.set("n", "<Space>b", "<cmd>Telescope buffers<cr>", { noremap = true, desc = "Find buffers" })
-vim.keymap.set(
-	"n",
-	"<Space>s",
-	"<cmd>Telescope lsp_document_symbols<cr>",
-	{ noremap = true, desc = "Document symbols" }
-)
-vim.keymap.set("n", "<Space>/", "<cmd>Telescope live_grep<cr>", { noremap = true, desc = "Global search" })
-vim.keymap.set("n", "<Space>k", vim.lsp.buf.hover, { noremap = true, desc = "Show hover info" })
-vim.keymap.set("n", "<Space>a", vim.lsp.buf.code_action, { noremap = true, desc = "Code actions" })
+vim.keymap.set("n", "<Space>s", "<cmd>Telescope lsp_document_symbols<cr>", { noremap = true, desc = "Document symbols" })
 
 -- Preference
 vim.keymap.set({ "n", "v" }, "<Space>qq", "<Esc>:qa<CR>", { noremap = true, desc = "Quit all buffers" })
