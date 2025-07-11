@@ -11,19 +11,46 @@ Instead of introducing a complex new mode, I will leverage Neovim's Visual Mode 
 
 ### 2. Keymap Implementation with `mini.keymap`
 
-I will use `mini.keymap` to create a clean and maintainable keymap configuration that reflects the Helix philosophy.
+I have implemented a comprehensive Helix-inspired keymap configuration using Neovim's native mapping and `mini.keymap`.
 
-- **File:** A new, clean `lua/core/keymaps.lua` will be created.
-- **Normal Mode Mappings:**
-    - `w` -> `viw` (select word)
-    - `l` -> `vl` (extend selection right)
-    - `h` -> `vh` (extend selection left)
-    - `p` -> `vip` (select paragraph)
-    - And so on for other motions.
-- **Action Mappings:** Standard Visual Mode keys (`d`, `c`, `y`) will be used.
-- **Leader Keys:**
-    - `<Space>` will be the leader for commands, primarily using Telescope (which is already installed) for file finding, searching, etc.
-    - `g` will be the leader for LSP "goto" actions.
+#### Key Features Implemented:
+
+1. **Selection-First Text Objects**
+   - `mip`: Select inside paragraph
+   - `miw`: Select inside word
+
+2. **Goto Mode (`g` prefix)**
+   - `gd`: Goto definition
+   - `gr`: Goto references
+   - `gi`: Goto implementation
+   - `gy`: Goto type definition
+   - `gf`: Goto file under cursor
+
+3. **Match/Surround Mode (`m` prefix)**
+   - `mm`: Match bracket
+   - `ms`: Surround selection
+   - `mr`: Replace surround
+   - `md`: Delete surround
+
+4. **View Mode (`z` prefix)**
+   - `zz`: Center cursor line
+   - `zt`: Cursor line to top
+   - `zb`: Cursor line to bottom
+   - `zh`, `zl`: Horizontal scrolling
+
+5. **Space Mode (`<Space>` prefix)**
+   - `<Space>f`: Find files
+   - `<Space>b`: Find buffers
+   - `<Space>s`: Document symbols
+   - `<Space>/`: Global search
+   - `<Space>k`: Show hover info
+   - `<Space>a`: Code actions
+
+#### Philosophy
+- Normal Mode is primarily for selection
+- Visual Mode is for actions
+- Leverages existing Neovim and `mini.nvim` functionality
+- Provides a Helix-like editing experience
 
 ### 3. UI and Functionality with `mini.nvim`
 
