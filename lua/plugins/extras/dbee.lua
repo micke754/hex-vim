@@ -1,6 +1,4 @@
-enabled = true
-
-plugin = {
+return {
 	"kndndrj/nvim-dbee",
 	dependencies = {
 		"MunifTanjim/nui.nvim",
@@ -15,9 +13,3 @@ plugin = {
 		require("dbee").setup(--[[optional config]])
 	end,
 }
-
-if enabled == false then
-	return {}
-else
-	return plugin
-end

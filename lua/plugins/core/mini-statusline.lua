@@ -1,5 +1,4 @@
-local enabled = false
-local plugin = {
+return {
 	"echasnovski/mini.statusline",
 	config = function()
 		require("mini.statusline").setup({
@@ -7,9 +6,3 @@ local plugin = {
 		})
 	end,
 }
-
-if enabled == true then
-	return plugin
-else
-	return {}
-end

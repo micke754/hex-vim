@@ -1,5 +1,3 @@
--- plugins/files.lua
-
 return {
 	{
 		"echasnovski/mini.files",

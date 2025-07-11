@@ -1,7 +1,5 @@
-local enabled = false
-
-local plugin = {
-	"echasnovski/mini.nvim",
+return {
+	"echasnovski/mini.keymap",
 	version = false,
 	config = function()
 		require("mini.keymap").setup()
@@ -20,14 +18,7 @@ local plugin = {
 		-- only mean to press `<Esc>` inside terminal.
 		local mode = { "i", "c", "x", "s" }
 		map_combo(mode, "jj", "<BS><BS><Esc>")
-
-		local mode = { "n", "v" }
-		map_combo(mode, "mm", "%")
+		-- mimmicking mm from helix
+		map_combo({ "n", "v" }, "mm", "%")
 	end,
 }
-
-if enabled == false then
-	return {}
-else
-	return plugin
-end

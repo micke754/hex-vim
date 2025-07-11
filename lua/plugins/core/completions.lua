@@ -1,6 +1,4 @@
-local enabled = true
-
-local plugin = {
+return {
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
@@ -28,9 +26,3 @@ local plugin = {
 		end,
 	},
 }
-
-if enabled == false then
-	return {}
-else
-	return plugin
-end
