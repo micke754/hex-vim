@@ -83,12 +83,18 @@ local function setup_surround_keymaps()
 end
 
 -- Setup all Helix-style keymaps
+local function setup_undo_redo_keymaps()
+    vim.keymap.set("n", "u", vim.cmd.undo, { desc = "Undo" })
+    vim.keymap.set("n", "U", vim.cmd.redo, { desc = "Redo" })
+end
+
 M.setup = function()
     setup_view_mode_keymaps()
     setup_movement_keymaps()
     setup_lsp_keymaps()
     setup_navigation_motions()
     setup_surround_keymaps()
+    setup_undo_redo_keymaps()
 end
 
 return M
