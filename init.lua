@@ -2,7 +2,6 @@
 
 -- Helix-like keybindings
 vim.g.mapleader = " " -- Leader key
-require("core.options")
 
 -- Ensure lazy.nvim is installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -18,10 +17,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Load plugins using lazy.nvim
-require("lazy").setup({
-	"plugins.core",
-	"plugins.extras",
-})
+require("lazy").setup("plugins.core")
 
 -- Load core configurations
+require("core.options")
 require("core.keymaps")
