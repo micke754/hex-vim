@@ -3,7 +3,12 @@ return {
 		"nvim-telescope/telescope.nvim",
 		dependencies = { { "nvim-lua/plenary.nvim" } },
 		config = function()
-			require("telescope").setup({})
+			require("telescope").setup({
+				defaults = {
+					generic_sorter = require("mini.fuzzy").get_telescope_sorter,
+					file_sorter = require("mini.fuzzy").get_telescope_sorter,
+				},
+			})
 			vim.keymap.set("n", "<Space>f", require("telescope.builtin").find_files, { desc = "Find Files" })
 			vim.keymap.set("n", "<Space>g", require("telescope.builtin").live_grep, { desc = "Live Grep" })
 			vim.keymap.set("n", "<Space>b", require("telescope.builtin").buffers, { desc = "Find Buffers" })

@@ -22,5 +22,5 @@ vim.keymap.set({ "n", "v" }, "<Space>qq", "<Esc>:qa<CR>", { noremap = true, desc
 vim.keymap.set({ "n", "v" }, "<Space>ww", "<Esc>:w<CR>", { noremap = true, desc = "Save buffer" })
 
 -- Require Helix-style keymaps
-require("core.helix-motions").setup()
-require("core.helix-keymaps").setup()
+require("core.keymaps.helix-keymaps").setup()
+require("core.keymaps.helix-motions").setup()
