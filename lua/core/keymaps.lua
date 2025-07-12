@@ -42,17 +42,21 @@ end
 local function smart_e()
 	local current_time = vim.loop.now()
 	local current_mode = vim.fn.mode()
+
 	if current_mode == "v" or current_mode == "V" then
 		if (current_time - last_motion_time) < MOTION_TIMEOUT then
+			-- When extending, exit visual mode, move right, start new visual selection
 			last_motion_time = current_time
-			return "e"
+			return "l<Esc>ve"
 		else
+			-- Timeout - new selection
 			last_motion_time = current_time
-			return "<Esc>lve"
+			return "l<Esc>ve"
 		end
 	elseif should_enter_visual_mode() then
+		-- Fresh selection from normal mode
 		last_motion_time = current_time
-		return ":noh<CR>lve"
+		return ":noh<CR>ve"
 	else
 		return "e"
 	end
