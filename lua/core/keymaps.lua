@@ -3,6 +3,10 @@
 -- Normal movements
 --e
 
+-- Timer-based smart motion tracking
+local last_motion_time = 0
+local MOTION_TIMEOUT = 100 -- milliseconds (adjust as needed)
+
 local function should_enter_visual_mode()
 	local mode = vim.fn.mode()
 	return mode == "n" and vim.v.operator == "" and vim.v.count == 0
@@ -10,13 +14,23 @@ end
 
 local function create_smart_motion(motion)
 	return function()
+		local current_time = vim.loop.now()
 		local current_mode = vim.fn.mode()
 
 		if current_mode == "v" or current_mode == "V" then
-			-- Already in visual, just extend
-			return motion
+			-- In visual mode
+			if (current_time - last_motion_time) < MOTION_TIMEOUT then
+				-- Within timeout - extend selection
+				last_motion_time = current_time
+				return motion
+			else
+				-- Timeout exceeded - new selection
+				last_motion_time = current_time
+				return "<Esc>v" .. motion
+			end
 		elseif should_enter_visual_mode() then
-			-- Fresh movement - enter visual mode (Helix style)
+			-- Fresh movement from normal mode - enter visual mode
+			last_motion_time = current_time
 			return ":noh<CR>v" .. motion
 		else
 			-- Operator pending or count - stay normal (Vim style)
@@ -26,12 +40,19 @@ local function create_smart_motion(motion)
 end
 
 local function smart_e()
+	local current_time = vim.loop.now()
 	local current_mode = vim.fn.mode()
-
 	if current_mode == "v" or current_mode == "V" then
-		return "e"
+		if (current_time - last_motion_time) < MOTION_TIMEOUT then
+			last_motion_time = current_time
+			return "e"
+		else
+			last_motion_time = current_time
+			return "<Esc>lve"
+		end
 	elseif should_enter_visual_mode() then
-		return ":noh<CR>ve"
+		last_motion_time = current_time
+		return ":noh<CR>lve"
 	else
 		return "e"
 	end
@@ -43,6 +64,7 @@ local smart_b = create_smart_motion("b")
 local smart_W = create_smart_motion("W")
 local smart_B = create_smart_motion("B")
 local smart_E = create_smart_motion("E")
+-- local smart_e = create_smart_motion("le")
 
 vim.keymap.set({ "n", "v" }, "e", smart_e, { expr = true, noremap = true, desc = "smart e motion" })
 vim.keymap.set({ "n", "v" }, "w", smart_w, { expr = true, noremap = true, desc = "smart w motion" })
