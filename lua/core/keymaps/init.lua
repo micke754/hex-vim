@@ -23,4 +23,4 @@ vim.keymap.set({ "n", "v" }, "<Space>ww", "<Esc>:w<CR>", { noremap = true, desc 
 
 -- Require Helix-style keymaps
 require("core.keymaps.helix-keymaps").setup()
-require("core.keymaps.helix-motions").setup()
+-- require("core.keymaps.helix-motions").setup()
