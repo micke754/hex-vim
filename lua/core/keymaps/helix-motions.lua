@@ -64,8 +64,8 @@ M.setup = function()
 	vim.keymap.set({ "n", "v" }, "E", M.smart_E, { expr = true, noremap = true, desc = "Smart E motion" })
 
 	-- Text object selections
-	vim.keymap.set("n", "mip", M.select_inside_paragraph, { noremap = true, desc = "Select inside paragraph" })
-	vim.keymap.set("n", "miw", M.select_inside_word, { noremap = true, desc = "Select inside word" })
+	vim.keymap.set({ "n", "v" }, "mip", M.select_inside_paragraph, { noremap = true, desc = "Select inside paragraph" })
+	vim.keymap.set({ "n", "v" }, "miw", M.select_inside_word, { noremap = true, desc = "Select inside word" })
 end
 
 return M

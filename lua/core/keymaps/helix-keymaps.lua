@@ -48,40 +48,6 @@ local function setup_navigation_motions()
     vim.keymap.set("n", "gl", "$", { noremap = true, desc = "Goto end of line" })
 end
 
--- Surround Mode
-local function safe_surround_add()
-    local ok, mini_surround = pcall(require, "mini.surround")
-    if ok then
-        mini_surround.add("visual")
-    else
-        print("mini.surround not loaded")
-    end
-end
-
-local function safe_surround_replace()
-    local ok, mini_surround = pcall(require, "mini.surround")
-    if ok then
-        mini_surround.replace()
-    else
-        print("mini.surround not loaded")
-    end
-end
-
-local function safe_surround_delete()
-    local ok, mini_surround = pcall(require, "mini.surround")
-    if ok then
-        mini_surround.delete()
-    else
-        print("mini.surround not loaded")
-    end
-end
-
-local function setup_surround_keymaps()
-    vim.keymap.set("n", "ms", safe_surround_add, { noremap = true, desc = "Surround selection" })
-    vim.keymap.set("n", "mr", safe_surround_replace, { noremap = true, desc = "Replace surround" })
-    vim.keymap.set("n", "md", safe_surround_delete, { noremap = true, desc = "Delete surround" })
-end
-
 -- Setup all Helix-style keymaps
 local function setup_undo_redo_keymaps()
     vim.keymap.set("n", "u", vim.cmd.undo, { desc = "Undo" })
@@ -93,7 +59,6 @@ M.setup = function()
     setup_movement_keymaps()
     setup_lsp_keymaps()
     setup_navigation_motions()
-    setup_surround_keymaps()
     setup_undo_redo_keymaps()
 end
 
