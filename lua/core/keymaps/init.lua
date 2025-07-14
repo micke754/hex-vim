@@ -1,11 +1,12 @@
 -- Core Neovim keymaps
 
 -- Searching
--- vim.keymap.set("n", ";", ":noh<CR>", { noremap = true, desc = "Clear search highlighting" })
--- vim.keymap.set("v", ";", ":noh<CR>", { noremap = true, desc = "Clear search highlighting" })
+vim.keymap.set("n", ";", ":noh<CR>", { noremap = true, desc = "Clear search highlighting" })
+vim.keymap.set("v", ";", ":noh<CR>", { noremap = true, desc = "Clear search highlighting" })
 
 -- Unmap s
-vim.keymap.set("n", "s", "", { noremap = true, desc = "unmap s" })
+local mode = { "i", "c", "x", "s" }
+vim.keymap.set(mode, "s", "", { noremap = true, desc = "unmap s" })
 
 -- Space Mode (Pickers)
 vim.keymap.set("n", "<Space>f", "<cmd>Telescope find_files<cr>", { noremap = true, desc = "Find files" })
