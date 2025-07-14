@@ -1,1 +1,0 @@
-I've tried to create a map for converting core vim keymaps to helix keymaps. @lua/core/keymaps/helix-motions.lua  is my best effort. Additionally, I don't think my timer based workflow will work long term so this will need to be reworked.
