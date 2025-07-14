@@ -29,7 +29,7 @@ vim.keymap.set({ "n", "v" }, "miW", "viW", { noremap = true, desc = "Select insi
 --Nvim Dbee
 vim.keymap.set({ "n", "v" }, "<Space>is", "<cmd>Dbee open<cr>", { noremap = true, desc = "Dbee Open" })
 vim.keymap.set({ "n", "v" }, "<Space>ic", "<cmd>Dbee close<cr>", { noremap = true, desc = "Dbee Close" })
-vim.keymap.set({ "n", "v" }, "<Space>it", "<cmd>Dbee toggle<cr>", { noremap = true, desc = "Dbee Toggle" })
+vim.keymap.set({ "n", "v" }, "<Space>td", "<cmd>Dbee toggle<cr>", { noremap = true, desc = "Dbee Toggle" })
 
 -- Global keymaps for running SQL in any .sql file
 vim.api.nvim_create_autocmd("FileType", {

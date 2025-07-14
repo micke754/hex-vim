@@ -23,7 +23,13 @@ return {
 			result = {
 				mappings = {
 					-- This keymap will ONLY be active in the result window
-					{ key = "<Space>it", mode = "n", action = require("dbee").toggle },
+					{
+						key = "<Space>td",
+						mode = "n",
+						action = function()
+							require("dbee").toggle()
+						end,
+					},
 				},
 			},
 		})
