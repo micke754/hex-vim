@@ -1,12 +1,11 @@
 -- Core Neovim keymaps
 
 -- Searching
-vim.keymap.set("n", ";", ":noh<CR>", { noremap = true, desc = "Clear search highlighting" })
-vim.keymap.set("v", ";", ":noh<CR>", { noremap = true, desc = "Clear search highlighting" })
+vim.keymap.set({ "n", "v" }, ";", ":noh<CR>", { noremap = true, desc = "Clear search highlighting" })
 
 -- Unmap s
-local mode = { "n", "x", "s" }
-vim.keymap.set(mode, "s", "", { noremap = true, desc = "unmap s" })
+-- local mode = { "n", "x", "s" }
+-- vim.keymap.set(mode, "s", "", { noremap = true, desc = "unmap s" })
 
 -- Space Mode (Pickers)
 vim.keymap.set("n", "<Space>f", "<cmd>Telescope find_files<cr>", { noremap = true, desc = "Find files" })
@@ -26,6 +25,11 @@ vim.keymap.set("n", "<Space>it", "<cmd>Dbee toggle<cr>", { noremap = true, desc 
 -- Preferences
 vim.keymap.set({ "n", "v" }, "<Space>qq", "<Esc>:qa<CR>", { noremap = true, desc = "Quit all buffers" })
 vim.keymap.set({ "n", "v" }, "<Space>ww", "<Esc>:w<CR>", { noremap = true, desc = "Save buffer" })
+
+-- Text object selections
+vim.keymap.set({ "n", "v" }, "mip", "vip", { noremap = true, desc = "Select inside paragraph" })
+vim.keymap.set({ "n", "v" }, "miw", "viw", { noremap = true, desc = "Select inside word" })
+vim.keymap.set({ "n", "v" }, "miW", "viW", { noremap = true, desc = "Select inside Word" })
 
 -- Require Helix-style keymaps
 require("core.keymaps.helix-keymaps").setup()
