@@ -7,6 +7,15 @@ return {
 			require("nvim-treesitter.configs").setup({
 				highlight = { enable = true },
 				incremental_selection = { enable = true },
+				ensure_installed = {
+					"c",
+					"python",
+					"go",
+					"lua",
+					"vim",
+					"vimdoc",
+					"sql",
+				},
 			})
 		end,
 	},

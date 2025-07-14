@@ -41,6 +41,25 @@ local themes = {
 		base0F = "#524f67", -- Deprecated, Embedded Language Tags
 	},
 
+	["rose-pine-wez"] = {
+		base00 = "#191724", -- Default Background
+		base01 = "#1f1d2e", -- Lighter Background
+		base02 = "#403d52", -- Selection Background (Lightened for better visibility)
+		base03 = "#6e6a86", -- Comments, Invisibles
+		base04 = "#908caa", -- Dark Foreground
+		base05 = "#e0def4", -- Default Foreground
+		base06 = "#f6f4ed", -- Light Foreground
+		base07 = "#56526e", -- Light Background
+		base08 = "#eb6f92", -- Variables, Tags
+		base09 = "#f6c177", -- Integers, Boolean, Constants
+		base0A = "#ebbcba", -- Classes, Search Text Background
+		base0B = "#31748f", -- Strings, Inherited Class
+		base0C = "#9ccfd8", -- Support, Regular Expressions
+		base0D = "#c4a7e7", -- Functions, Methods, Headings
+		base0E = "#f6c177", -- Keywords, Storage, Selector
+		base0F = "#524f67", -- Deprecated, Embedded Language Tags
+	},
+
 	oxocarbon = {
 		-- base00 = "#161616", -- Default Background
 		-- base01 = "#262626", -- Lighter Background

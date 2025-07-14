@@ -17,6 +17,11 @@ vim.keymap.set(
 	{ noremap = true, desc = "Document symbols" }
 )
 
+--Nvim Dbee
+vim.keymap.set("n", "<Space>is", "<cmd>Dbee open<cr>", { noremap = true, desc = "Dbee Open" })
+vim.keymap.set("n", "<Space>ic", "<cmd>Dbee close<cr>", { noremap = true, desc = "Dbee Close" })
+vim.keymap.set("n", "<Space>it", "<cmd>Dbee toggle<cr>", { noremap = true, desc = "Dbee Toggle" })
+
 -- Preferences
 vim.keymap.set({ "n", "v" }, "<Space>qq", "<Esc>:qa<CR>", { noremap = true, desc = "Quit all buffers" })
 vim.keymap.set({ "n", "v" }, "<Space>ww", "<Esc>:w<CR>", { noremap = true, desc = "Save buffer" })
