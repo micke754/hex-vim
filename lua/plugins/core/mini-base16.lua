@@ -1,5 +1,5 @@
 -- Theme selection - change this variable to switch themes
-local THEME = "rose-pine" -- Options: "catppuccin", "rose-pine", "oxocarbon", "kanagawa-dark"
+local THEME = "rose-pine-moon" -- Options: "catppuccin", "rose-pine", "oxocarbon", "kanagawa-dark"
 
 -- Theme palettes
 local themes = {
@@ -41,23 +41,23 @@ local themes = {
 		base0F = "#524f67", -- Deprecated, Embedded Language Tags
 	},
 
-	["rose-pine-wez"] = {
-		base00 = "#191724", -- Default Background
-		base01 = "#1f1d2e", -- Lighter Background
-		base02 = "#403d52", -- Selection Background (Lightened for better visibility)
+	["rose-pine-moon"] = {
+		base00 = "#232136", -- Default Background
+		base01 = "#2a273f", -- Lighter Background (using surface from moon palette)
+		base02 = "#44415a", -- Selection Background
 		base03 = "#6e6a86", -- Comments, Invisibles
-		base04 = "#908caa", -- Dark Foreground
+		base04 = "#908caa", -- Dark Foreground (using subtle from moon palette)
 		base05 = "#e0def4", -- Default Foreground
-		base06 = "#f6f4ed", -- Light Foreground
-		base07 = "#56526e", -- Light Background
-		base08 = "#eb6f92", -- Variables, Tags
-		base09 = "#f6c177", -- Integers, Boolean, Constants
-		base0A = "#ebbcba", -- Classes, Search Text Background
-		base0B = "#31748f", -- Strings, Inherited Class
-		base0C = "#9ccfd8", -- Support, Regular Expressions
-		base0D = "#c4a7e7", -- Functions, Methods, Headings
-		base0E = "#f6c177", -- Keywords, Storage, Selector
-		base0F = "#524f67", -- Deprecated, Embedded Language Tags
+		base06 = "#e0def4", -- Light Foreground (no direct equivalent, using foreground)
+		base07 = "#393552", -- Light Background (using overlay from moon palette)
+		base08 = "#eb6f92", -- Variables, Tags (love)
+		base09 = "#f6c177", -- Integers, Boolean, Constants (gold)
+		base0A = "#ea9a97", -- Classes, Search Text Background (rose)
+		base0B = "#3e8fb0", -- Strings, Inherited Class (pine)
+		base0C = "#9ccfd8", -- Support, Regular Expressions (foam)
+		base0D = "#c4a7e7", -- Functions, Methods, Headings (iris)
+		base0E = "#f6c177", -- Keywords, Storage, Selector (gold)
+		base0F = "#6e6a86", -- Deprecated, Embedded Language Tags (muted)
 	},
 
 	oxocarbon = {
