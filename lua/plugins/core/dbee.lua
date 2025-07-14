@@ -19,6 +19,13 @@ return {
 					{ key = "<C-CR>", mode = "n", action = "run_under_cursor" },
 				},
 			},
+			-- Add this new block for the result window
+			result = {
+				mappings = {
+					-- This keymap will ONLY be active in the result window
+					{ key = "<Space>it", mode = "n", action = require("dbee").toggle },
+				},
+			},
 		})
 	end,
 }
