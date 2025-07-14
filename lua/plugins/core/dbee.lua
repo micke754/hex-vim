@@ -17,12 +17,6 @@ return {
 					{ key = "<C-e>", mode = "n", action = "run_file" },
 					-- (Default) Pressing <CR> in Normal mode runs the statement under the cursor
 					{ key = "<C-CR>", mode = "n", action = "run_under_cursor" },
-					-- Pressing "<C-e>" in Visual mode runs the selected query
-					{ key = "<C-e>", mode = "v", action = "run_selection" },
-					-- Pressing "<C-e>" in Normal mode runs the entire note file
-					{ key = "<C-e>", mode = "n", action = "run_file" },
-					-- (Default) Pressing <CR> in Normal mode runs the statement under the cursor
-					{ key = "<C-CR>", mode = "n", action = "run_under_cursor" },
 				},
 			},
 		})
