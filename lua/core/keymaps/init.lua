@@ -5,7 +5,7 @@ vim.keymap.set("n", ";", ":noh<CR>", { noremap = true, desc = "Clear search high
 vim.keymap.set("v", ";", ":noh<CR>", { noremap = true, desc = "Clear search highlighting" })
 
 -- Unmap s
-local mode = { "i", "c", "x", "s" }
+local mode = { "n", "x", "s" }
 vim.keymap.set(mode, "s", "", { noremap = true, desc = "unmap s" })
 
 -- Space Mode (Pickers)
