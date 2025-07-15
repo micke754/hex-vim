@@ -5,6 +5,14 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			{
+				"MattiasMTS/cmp-dbee",
+				dependencies = {
+					{ "kndndrj/nvim-dbee" },
+				},
+				ft = "sql",
+				opts = {},
+			},
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -17,11 +25,12 @@ return {
 				mapping = cmp.mapping.preset.insert({
 					["<C-y>"] = cmp.mapping.confirm({ select = true }),
 				}),
-				sources = {
+				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "buffer" },
 					{ name = "path" },
-				},
+					{ name = "cmp-dbee" }, -- Added source for cmp-dbee
+				}),
 			})
 		end,
 	},
