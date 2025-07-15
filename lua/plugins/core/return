@@ -1,0 +1,18 @@
+return {
+	"stevearc/conform.nvim",
+	opts = {
+		-- Define formatters for each filetype
+		formatters_by_ft = {
+			lua = { "stylua" },
+			-- Add this line for SQL files
+			sql = { "sqlfmt" },
+			-- Other formatters...
+		},
+
+		-- Optional: A great quality-of-life feature is to format on save
+		format_on_save = {
+			timeout_ms = 500,
+			lsp_fallback = true,
+		},
+	},
+}
