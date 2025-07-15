@@ -50,6 +50,38 @@ local function setup_navigation_motions()
 	vim.keymap.set(mode_nv, "gl", "$", { noremap = true, desc = "Goto end of line" })
 end
 
+-- Keymaps for managing window (pane) splits and resizing
+-- Alternative implementation using the leader key
+local function setup_window_management_keymaps_leader()
+	local resize_amount = 3
+
+	-- Use <leader>w as a prefix for "window" commands
+	vim.keymap.set(
+		"n",
+		"<leader>wl",
+		resize_amount .. "<C-w>>",
+		{ noremap = true, silent = true, desc = "Increase window width" }
+	)
+	vim.keymap.set(
+		"n",
+		"<leader>wh",
+		resize_amount .. "<C-w><",
+		{ noremap = true, silent = true, desc = "Decrease window width" }
+	)
+	vim.keymap.set(
+		"n",
+		"<leader>wk",
+		resize_amount .. "<C-w>+",
+		{ noremap = true, silent = true, desc = "Increase window height" }
+	)
+	vim.keymap.set(
+		"n",
+		"<leader>wj",
+		resize_amount .. "<C-w>-",
+		{ noremap = true, silent = true, desc = "Decrease window height" }
+	)
+end
+
 -- Setup all Helix-style keymaps
 local function setup_undo_redo_keymaps()
 	vim.keymap.set(mode_nv, "u", vim.cmd.undo, { desc = "Undo" })
@@ -57,12 +89,12 @@ local function setup_undo_redo_keymaps()
 end
 
 M.setup = function()
-	setup_view_mode_keymaps()
-	setup_movement_keymaps()
 	setup_lsp_keymaps()
+	setup_movement_keymaps()
 	setup_navigation_motions()
 	setup_undo_redo_keymaps()
+	setup_view_mode_keymaps()
+	-- setup_window_management_keymaps_leader()
 end
 
 return M
-

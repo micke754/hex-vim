@@ -10,6 +10,7 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			python = { "ruff" },
+			sql = { "sqlfmt" },
 			-- javascript = { "prettierd", "prettier", stop_after_first = true },
 		},
 		-- Set default options
@@ -25,6 +26,9 @@ return {
 			},
 			ruff = {
 				args = { "format", "--line-length", "80", "-" },
+			},
+			sqlfmt = {
+				args = { "--line-length", "80", "-" },
 			},
 		},
 	},

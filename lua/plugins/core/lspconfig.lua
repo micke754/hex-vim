@@ -14,6 +14,18 @@ return {
 				},
 			})
 
+			lspconfig.sqls.setup({
+				settings = {
+					connections = {
+						{
+							alias = "databricks",
+							driver = "jdbc",
+							dataSourceName = "jdbc:databricks://adb-1659029816912061.1.azuredatabricks.net:443/default;transportMode=http;ssl=1;AuthMech=3;httpPath=/sql/1.0/warehouses/2ce9027449545384;",
+						},
+					},
+				},
+			})
+
 			-- Lua Language Server
 			lspconfig.lua_ls.setup({
 				settings = {

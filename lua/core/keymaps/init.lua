@@ -31,6 +31,9 @@ vim.keymap.set({ "n", "v" }, "<Space>is", "<cmd>Dbee open<cr>", { noremap = true
 vim.keymap.set({ "n", "v" }, "<Space>ic", "<cmd>Dbee close<cr>", { noremap = true, desc = "Dbee Close" })
 vim.keymap.set({ "n", "v" }, "<Space>td", "<cmd>Dbee toggle<cr>", { noremap = true, desc = "Dbee Toggle" })
 
+--FineCmdline
+vim.api.nvim_set_keymap("n", ":", "<cmd>FineCmdline<CR>", { noremap = true })
+
 -- Global keymaps for running SQL in any .sql file
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "sql",
